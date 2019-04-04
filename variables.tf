@@ -60,6 +60,12 @@ variable backend_params {
   type        = "list"
 }
 
+variable backend_custom_headers {
+  description = "List of custom headers in order: HEADER_NAME:HEADER_VALUE"
+  type        = "list"
+  default     = []
+}
+
 variable backend_protocol {
   description = "The protocol with which to talk to the backend service"
   default     = "HTTP"

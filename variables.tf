@@ -95,6 +95,12 @@ variable "backends" {
   }))
 }
 
+variable "custom_headers" {
+  description = "List of custom headers in order: HEADER_NAME:HEADER_VALUE"
+  type        = list(string)
+  default     = []
+}
+
 variable "create_url_map" {
   description = "Set to `false` if url_map variable is provided."
   type        = bool

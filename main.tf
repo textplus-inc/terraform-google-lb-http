@@ -91,6 +91,7 @@ resource "google_compute_backend_service" "default" {
   project = var.project
   name    = "${var.name}-backend-${each.key}"
 
+  provider                        = "google-beta"
   port_name                       = each.value.port_name
   protocol                        = each.value.protocol
   timeout_sec                     = lookup(each.value, "timeout_sec", null)
@@ -99,6 +100,7 @@ resource "google_compute_backend_service" "default" {
   enable_cdn                      = lookup(each.value, "enable_cdn", false)
   security_policy                 = var.security_policy
   health_checks                   = [google_compute_health_check.default[each.key].self_link]
+  custom_request_headers          = var.custom_headers
 
   dynamic "backend" {
     for_each = toset(each.value["groups"])

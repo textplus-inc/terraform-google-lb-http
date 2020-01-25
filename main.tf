@@ -91,7 +91,7 @@ resource "google_compute_backend_service" "default" {
   project = var.project
   name    = "${var.name}-backend-${each.key}"
 
-  provider                        = "google-beta"
+  provider                        = google-beta
   port_name                       = each.value.port_name
   protocol                        = each.value.protocol
   timeout_sec                     = lookup(each.value, "timeout_sec", null)

@@ -86,7 +86,7 @@ resource "google_compute_url_map" "default" {
 }
 
 resource "google_compute_backend_service" "default" {
-  provider               = "google-beta"
+  provider               = google-beta
   project                = var.project
   count                  = length(var.backend_params)
   name                   = "${var.name}-backend-${count.index}"
@@ -97,7 +97,7 @@ resource "google_compute_backend_service" "default" {
   health_checks          = [element(google_compute_http_health_check.default.*.self_link, count.index)]
   security_policy        = var.security_policy
   enable_cdn             = var.cdn
-  custom_request_headers = var.backend_custom_headers
+  custom_request_headers = var.custom_headers
 }
 
 resource "google_compute_http_health_check" "default" {

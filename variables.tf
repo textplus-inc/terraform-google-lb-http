@@ -59,40 +59,14 @@ variable "target_tags" {
   type        = list(string)
 }
 
-variable "backends" {
+variable backends {
   description = "Map backend indices to list of backend maps."
-  type = map(object({
-    description                     = string
-    protocol                        = string
-    port                            = number
-    port_name                       = string
-    timeout_sec                     = number
-    connection_draining_timeout_sec = number
-    enable_cdn                      = bool
-    health_check = object({
-      check_interval_sec  = number
-      timeout_sec         = number
-      healthy_threshold   = number
-      unhealthy_threshold = number
-      request_path        = string
-      port                = number
-      host                = string
-    })
-    groups = list(object({
-      group                        = string
-      balancing_mode               = string
-      capacity_scaler              = number
-      description                  = string
-      max_connections              = number
-      max_connections_per_instance = number
-      max_connections_per_endpoint = number
-      max_rate                     = number
-      max_rate_per_instance        = number
-      max_rate_per_endpoint        = number
-      max_utilization              = number
-    }))
+  type        = map
+}
 
-  }))
+variable backend_params {
+  description = "Comma-separated encoded list of parameters in order: health check path, service port name, service port, backend timeout seconds"
+  type        = list
 }
 
 variable "custom_headers" {

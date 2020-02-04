@@ -112,7 +112,7 @@ resource "google_compute_backend_service" "default" {
   for_each = var.backends
 
   project = var.project
-  name            = "${var.name}-backend-${count.index}"
+  name            = "${var.name}-backend-${each.value.index}"
 
   provider                        = google-beta
   port_name                       = each.value.port_name
@@ -148,7 +148,7 @@ resource "google_compute_backend_service" "default" {
 resource "google_compute_health_check" "default" {
   for_each = var.backends
   project  = var.project
-  name     = "${var.name}-hc-${count.index}"
+  name     = "${var.name}-hc-${each.value.index}"
 
   check_interval_sec  = lookup(each.value["health_check"], "check_interval_sec", 5)
   timeout_sec         = lookup(each.value["health_check"], "timeout_sec", 5)

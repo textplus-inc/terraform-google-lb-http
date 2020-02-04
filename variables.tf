@@ -64,10 +64,10 @@ variable backends {
   type        = map
 }
 
-variable backend_params {
-  description = "Comma-separated encoded list of parameters in order: health check path, service port name, service port, backend timeout seconds"
-  type        = list
-}
+# variable backend_params {
+#   description = "Comma-separated encoded list of parameters in order: health check path, service port name, service port, backend timeout seconds"
+#   type        = list
+# }
 
 variable backend_protocol {
   description = "The protocol with which to talk to the backend service"

@@ -79,7 +79,7 @@ resource "google_compute_ssl_certificate" "default" {
 
 resource "google_compute_url_map" "default" {
   project         = var.project
-  count           = var.create_url_map ? 1 : 0
+  count           = var.create_url_map ? 0 : 1
   name            = "${var.name}-url-map"
   default_service = google_compute_backend_service.default[keys(var.backends)[0]].self_link
 

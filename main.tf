@@ -112,7 +112,9 @@ resource "google_compute_backend_service" "default" {
   for_each = var.backends
 
   project = var.project
-  name            = "${var.name}-backend-${lookup(each.value, "index", 0)}"
+  name    = "${var.name}-backend-${each.key}"
+
+  #name            = "${var.name}-backend-${lookup(each.value, "index", 0)}"
 
   provider                        = google-beta
   port_name                       = each.value.port_name

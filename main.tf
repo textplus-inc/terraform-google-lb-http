@@ -63,6 +63,10 @@ resource "google_compute_target_https_proxy" "default" {
   ssl_certificates = compact(concat(var.ssl_certificates, google_compute_ssl_certificate.default.*.self_link, ), )
   ssl_policy       = var.ssl_policy
   quic_override    = var.quic ? "ENABLE" : null
+
+  lifecycle {
+    ignore_changes = ["ssl_certificates"]
+  }
 }
 
 resource "google_compute_ssl_certificate" "default" {

@@ -65,7 +65,7 @@ resource "google_compute_target_https_proxy" "default" {
   quic_override    = var.quic ? "ENABLE" : null
 
   lifecycle {
-    ignore_changes = ["ssl_certificates"]
+    ignore_changes = [ssl_certificates]
   }
 }
 
